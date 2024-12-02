@@ -1,0 +1,159 @@
+/* Media Queries for Responsive Design */
+
+/* Extra Small Devices (Phones, less than 576px) */
+@media (max-width: 575px) {
+    .nav {
+        flex-direction: column;
+        padding: 10px;
+        margin: 0;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .navbar-items {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .header {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .header-content {
+        max-width: 100%;
+    }
+
+    .header-content h1 {
+        font-size: 2rem;
+    }
+
+    .header-content h1 span {
+        font-size: 1.8rem;
+    }
+
+    .about-container {
+        flex-direction: column;
+    }
+
+    .pricing-card {
+        flex: 1 1 100%;
+    }
+
+    .contact-section {
+        flex-direction: column;
+    }
+
+    .row {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+/* Small Devices (Portrait Tablets, less than 768px) */
+@media (max-width: 767px) {
+    .nav {
+        padding: 10px;
+        margin: 0;
+        width: 100%;
+    }
+
+    .header-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .header-content h1 span {
+        font-size: 2rem;
+    }
+
+    .about-container {
+        flex-direction: column;
+    }
+
+    .pricing-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .cta-content {
+        padding: 20px;
+    }
+}
+
+/* Medium Devices (Landscape Tablets, less than 992px) */
+@media (max-width: 991px) {
+    .nav {
+        padding: 10px;
+        margin: 0;
+        width: 100%;
+    }
+
+    .header-content {
+        max-width: 60%;
+    }
+
+    .about-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .pricing-card {
+        flex: 1 1 45%;
+    }
+
+    .cta-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .contact-info, .contact-form {
+        flex: 1 1 100%;
+    }
+}
+
+/* Large Devices (Desktops, less than 1200px) */
+@media (max-width: 1199px) {
+    .header-content h1 {
+        font-size: 3rem;
+    }
+
+    .header-content h1 span {
+        font-size: 2.5rem;
+    }
+
+    .about-container {
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    .pricing-card {
+        flex: 1 1 calc(50% - 20px);
+    }
+
+    .cta-content h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Extra Large Devices (Wide Screens, more than 1200px) */
+@media (min-width: 1200px) {
+    .header-content h1 {
+        font-size: 3.5rem;
+    }
+
+    .header-content h1 span {
+        font-size: 3rem;
+    }
+
+    .about-content h2 {
+        font-size: 2.2rem;
+    }
+
+    .pricing-card {
+        flex: 1 1 calc(33.333% - 20px);
+    }
+
+    .cta-content h2 {
+        font-size: 2.2rem;
+    }
+}
