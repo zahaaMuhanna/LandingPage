@@ -5,27 +5,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to update the active link based on the scroll position
     const updateActiveLink = () => {
-        const scrollPosition = window.scrollY + window.innerHeight / 2;
-        let activeIndex = -1; 
-
         sections.forEach((section, index) => {
-            const sectionTop = section.offsetTop;
-            const sectionBottom = sectionTop + section.offsetHeight;
+            const rect = section.getBoundingClientRect();
+            const link = navLinks[index];
 
-            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-                activeIndex = index;
+            // Check if the section is within the viewport
+            if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
             }
-        });
-
-        if (
-            activeIndex === -1 &&
-            window.scrollY + window.innerHeight >= document.body.scrollHeight
-        ) {
-            activeIndex = sections.length - 1; // Set the last section active
-        }
-
-        navLinks.forEach((link, index) => {
-            link.classList.toggle('active', index === activeIndex);
         });
     };
 
