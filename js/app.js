@@ -1,15 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Navbar Section Logic
-    const sections = document.querySelectorAll('header, section');
-    const navLinks = document.querySelectorAll('.navbar-item a'); 
+    const sections = document.querySelectorAll('section');
+    const navbarItemsContainer = document.querySelector('.navbar-items');
 
-    // Function to update the active link based on the scroll position
+    // Dynamically create navbar items
+    sections.forEach((section) => {
+        const sectionId = section.id; // Get the section's ID
+        const sectionName = sectionId.charAt(0).toUpperCase() + sectionId.slice(1); // Format section name
+
+        // Create list item and anchor element
+        const listItem = document.createElement('li');
+        listItem.className = 'navbar-item';
+
+        const anchor = document.createElement('a');
+        anchor.href = `#${sectionId}`;
+        anchor.textContent = sectionName;
+        anchor.className = '';
+
+        // Append anchor to list item, and list item to navbar container
+        listItem.appendChild(anchor);
+        navbarItemsContainer.appendChild(listItem);
+    });
+
+    // Add active link logic
+    const navLinks = document.querySelectorAll('.navbar-item a');
+
     const updateActiveLink = () => {
+        const scrollPosition = window.scrollY + window.innerHeight / 2;
+
         sections.forEach((section, index) => {
             const rect = section.getBoundingClientRect();
             const link = navLinks[index];
 
-            // Check if the section is within the viewport
             if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
                 link.classList.add('active');
             } else {
@@ -19,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.addEventListener('scroll', updateActiveLink);
-
     updateActiveLink();
 
     // Form Validation Logic
