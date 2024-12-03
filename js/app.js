@@ -1,47 +1,53 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Navbar Section Logic
-    const sections = document.querySelectorAll('section');
+    const header = document.querySelector('header'); // Select the header section
+    const sections = document.querySelectorAll('section'); // Select all sections
     const navbarItemsContainer = document.querySelector('.navbar-items');
 
-    // Dynamically create navbar items
-    sections.forEach((section) => {
-        const sectionId = section.id; // Get the section's ID
-        const sectionName = sectionId.charAt(0).toUpperCase() + sectionId.slice(1); // Format section name
-
-        // Create list item and anchor element
+    // Create a function to add navbar items dynamically
+    const createNavbarItem = (sectionId, sectionName) => {
         const listItem = document.createElement('li');
         listItem.className = 'navbar-item';
 
         const anchor = document.createElement('a');
         anchor.href = `#${sectionId}`;
         anchor.textContent = sectionName;
-        anchor.className = '';
 
-        // Append anchor to list item, and list item to navbar container
         listItem.appendChild(anchor);
         navbarItemsContainer.appendChild(listItem);
+    };
+
+    // Add "Home" for the header section as the first item
+    createNavbarItem('header', 'Home');
+
+    // Dynamically create navbar items for all sections
+    sections.forEach((section) => {
+        const sectionId = section.id;
+        const sectionName = sectionId.charAt(0).toUpperCase() + sectionId.slice(1);
+        createNavbarItem(sectionId, sectionName);
     });
 
     // Add active link logic
     const navLinks = document.querySelectorAll('.navbar-item a');
+    const allSections = [header, ...sections]; // Include the header in the sections list
 
-    const updateActiveLink = () => {
-        const scrollPosition = window.scrollY + window.innerHeight / 2;
-
-        sections.forEach((section, index) => {
+    const updateActiveState = () => {
+        allSections.forEach((section, index) => {
             const rect = section.getBoundingClientRect();
-            const link = navLinks[index];
 
+            // Check if the section is in the viewport
             if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
-                link.classList.add('active');
+                section.classList.add('active-section'); // Add active class to section
+                navLinks[index].classList.add('active'); // Add active class to nav link
             } else {
-                link.classList.remove('active');
+                section.classList.remove('active-section'); // Remove active class from section
+                navLinks[index].classList.remove('active'); // Remove active class from nav link
             }
         });
     };
 
-    window.addEventListener('scroll', updateActiveLink);
-    updateActiveLink();
+    window.addEventListener('scroll', updateActiveState);
+    updateActiveState(); // Initialize on page load
 
     // Form Validation Logic
     const form = document.querySelector('.contact-form form');
@@ -51,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageArea = document.querySelector('.contact-form textarea');
 
     form.addEventListener('submit', (event) => {
-        event.preventDefault(); 
+        event.preventDefault();
 
         clearErrors();
 
@@ -92,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         error.textContent = message;
         input.parentNode.insertBefore(error, input.nextSibling);
         input.classList.add('error-input');
-        input.focus(); 
+        input.focus();
     }
 
     function clearErrors() {
