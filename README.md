@@ -38,4 +38,4 @@ This landing page showcases a modern, responsive web layout suitable for desktop
 
 1. Clone this repository or download the project files.
    ```bash
-   git clone <[repository_url](https://github.com/zahaaMuhanna/LandingPage.git)>
+   git clone <(https://github.com/zahaaMuhanna/LandingPage.git)>
